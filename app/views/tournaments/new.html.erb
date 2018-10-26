@@ -1,0 +1,38 @@
+<h1>New Tournament</h1>
+<%= form_with scope: :tournament, url: tournaments_path, local: true do |form| %>
+
+  <% if @tournament.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@tournament.errors.count, "error") %> не позволила
+        сохранить турнир:
+      </h2>
+      <ul>
+        <% @tournament.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label "Название турнира" %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <% teams = Team.all %>
+    <% teams.each do |team| %>
+      <%= form.check_box :teams, { multiple: true }, team.id, false %>
+      <%= form.label team.name %>
+      <br>
+    <% end %>
+
+  </p>
+
+  <p>
+    <%= form.submit "Сохранить" %>
+  </p>
+<% end %>
+
+<%= link_to 'Назад', tournaments_path %>

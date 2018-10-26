@@ -1,0 +1,12 @@
+<p>
+  <strong>Название:</strong>
+  <%= @team.name %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @team.desc%>
+</p>
+
+<%= link_to 'Редактировать', edit_team_path(@team) %>
+<%= link_to 'Назад', teams_path %>

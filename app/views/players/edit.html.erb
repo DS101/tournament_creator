@@ -1,0 +1,49 @@
+<h1>Editing player</h1>
+
+<%= form_with(model: @player, local: true) do |form| %>
+
+  <% if @player.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@player.errors.count, "error") %> prohibited
+        this player from being saved:
+      </h2>
+      <ul>
+        <% @player.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label "Имя" %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label "Фамилия" %><br>
+    <%= form.text_field :surname %>
+  </p>
+
+  <p>
+    <%= form.label "Год рождения" %><br>
+    <%= form.date_field :born_on %>
+  </p>
+
+  <p>
+    <%= form.label "Доп. информация" %><br>
+    <%= form.text_area :desc %>
+  </p>
+
+  <p>
+    <%= form.label "Команда" %><br>
+    <%= form.collection_select(:team_id, Team.all, :id, :name, include_blank: "Выбор команды") %>
+  </p>
+
+  <p>
+    <%= form.submit "Сохранить" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', players_path %>

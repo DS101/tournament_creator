@@ -1,0 +1,22 @@
+<h1>Listing teams</h1>
+
+<%= link_to 'Новая команда', new_team_path %>
+
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Описание</th>
+  </tr>
+
+  <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.name %></td>
+      <td><%= team.desc %></td>
+      <td><%= link_to 'Просмотр', team_path(team) %></td>
+      <td><%= link_to 'Редактировать', edit_team_path(team) %></td>
+      <td><%= link_to 'Удалить', team_path(team),
+              method: :delete,
+              data: { confirm: 'Вы уверены?' } %></td>
+    </tr>
+  <% end %>
+</table>

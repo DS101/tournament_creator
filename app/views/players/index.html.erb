@@ -1,0 +1,25 @@
+<h1>Listing players</h1>
+
+<%= link_to 'Новый игрок', new_player_path %>
+
+<table>
+  <tr>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Дата рождения</th>
+    <th></th>
+  </tr>
+
+  <% @players.each do |player| %>
+    <tr>
+      <td><%= player.name %></td>
+      <td><%= player.surname %></td>
+      <td><%= player.born_on.strftime('%d.%m.%Y') %></td>
+      <td><%= link_to 'Просмотр', player_path(player) %></td>
+      <td><%= link_to 'Редактировать', edit_player_path(player) %></td>
+      <td><%= link_to 'Удалить', player_path(player),
+              method: :delete,
+              data: { confirm: 'Вы уверены?' } %></td>
+    </tr>
+  <% end %>
+</table>

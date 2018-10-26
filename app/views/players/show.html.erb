@@ -1,0 +1,27 @@
+<p>
+  <strong>Имя:</strong>
+  <%= @player.name %>
+</p>
+
+<p>
+  <strong>Фамилия:</strong>
+  <%= @player.surname %>
+</p>
+
+<p>
+  <strong>Дата рождения:</strong>
+  <%= @player.born_on.strftime('%d.%m.%Y') %>
+</p>
+
+<p>
+  <strong>Дополнительная Информация:</strong>
+  <%= @player.desc %>
+</p>
+
+<p>
+  <strong>Команда:</strong>
+  <%= @player.team %>
+</p>
+
+<%= link_to 'Редактировать', edit_player_path(@player) %>
+<%= link_to 'Назад', players_path %>
